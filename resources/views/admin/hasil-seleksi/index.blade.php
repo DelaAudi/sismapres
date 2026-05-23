@@ -18,7 +18,7 @@
 <!-- Tabel Mahasiswa Lolos & Dirangking -->
 <div class="card-container mb-4">
     <div class="filter-section d-flex justify-content-between align-items-center mb-3">
-        <h5 class="fw-bold m-0" style="color: #1a2c3a;"><i class="fa-solid fa-trophy text-warning me-2"></i>Mahasiswa Lolos Perangkingan</h5>
+        <h5 class="fw-bold m-0" style="color: #1a2c3a;"><i class="fa-solid text-warning me-2"></i>Mahasiswa Lolos Perangkingan</h5>
         <div class="d-flex align-items-center gap-3">
             <form action="{{ route('admin.hasil-seleksi.index') }}" method="GET" class="d-flex gap-2">
                 <input type="text" name="search" class="form-control" placeholder="Nama atau NPM..." value="{{ $search }}" style="min-width: 250px;">

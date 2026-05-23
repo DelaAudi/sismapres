@@ -12,16 +12,34 @@ class PenilaianController extends Controller
 {
     use \App\Traits\TopsisCalculator;
 
-    public function index()
+    public function index(Request $request)
     {
-        $mahasiswas = Mahasiswa::with('berkas')->where('status_berkas', 'lolos')->get();
+        $search = $request->input('search');
+        $status = $request->input('status');
+
+        $query = Mahasiswa::with('berkas')->where('status_berkas', 'lolos');
+
+        if ($search) {
+            $query->where(function($q) use ($search) {
+                $q->where('nama', 'like', "%{$search}%")
+                  ->orWhere('npm', 'like', "%{$search}%");
+            });
+        }
+
+        if ($status === 'sudah') {
+            $query->where('is_dinilai', true);
+        } elseif ($status === 'belum') {
+            $query->where('is_dinilai', false);
+        }
+
+        $mahasiswas = $query->get();
         $kriterias = Kriteria::all();
         
         // Ambil data penilaian yang dikelompokkan berdasarkan mahasiswa
         $penilaians = Penilaian::with(['mahasiswa', 'kriteria'])->get()->groupBy('mahasiswa_id');
         $detailPenilaians = \App\Models\DetailPenilaian::with(['mahasiswa', 'kriteria'])->get()->groupBy('mahasiswa_id');
 
-        return view('admin.data-penilaian.input', compact('mahasiswas', 'kriterias', 'penilaians', 'detailPenilaians'));
+        return view('admin.data-penilaian.input', compact('mahasiswas', 'kriterias', 'penilaians', 'detailPenilaians', 'search', 'status'));
     }
 
     public function store(Request $request)
