@@ -27,8 +27,32 @@
     </div>
 @endif
 
-<div class="card border-0 shadow-sm rounded-4 overflow-hidden">
-    <div class="card-body p-0">
+<div class="card-container">
+
+        <div class="filter-section mb-3">
+            <form action="{{ route('admin.data-penilaian.input') }}" method="GET">
+                <div class="row g-3">
+                    <div class="col-md-5">
+                        <label for="search" class="form-label fw-bold small">Cari Mahasiswa</label>
+                        <div class="search-box">
+                            <input type="text" id="search" name="search" class="form-control" placeholder="Nama" value="{{ $search }}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="status" class="form-label fw-bold small">Status Pemberitahuan</label>
+                        <select name="status" id="status" class="form-control" onchange="this.form.submit()">
+                            <option value="">Semua Status</option>
+                            <option value="belum" {{ $status == 'belum' ? 'selected' : '' }}>Belum Dinilai</option>
+                            <option value="sudah" {{ $status == 'sudah' ? 'selected' : '' }}>Penilaian Sukses</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 d-flex align-items-end">
+                        <button class="btn btn-primary w-100"><i class="fa-solid fa-magnifying-glass me-2"></i> Filter Data</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
         <div class="table-responsive">
             <table class="table table-hover align-middle mb-0">
                 <thead class="bg-light">
@@ -115,8 +139,7 @@
             </table>
         </div>
     </div>
-</div>
-
+    
 <!-- Modal Tambah/Edit Penilaian -->
 <div class="modal fade" id="modalTambahPenilaian" tabindex="-1" aria-labelledby="modalTambahPenilaianLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-scrollable">
@@ -434,15 +457,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Loading state on form submit
-    form.addEventListener('submit', function() {
+    // Loading state and validation on form submit
+    form.addEventListener('submit', function(e) {
+        // Validasi: pastikan semua kriteria sudah dinilai
+        let isValid = true;
+        document.querySelectorAll('.skor-input').forEach(input => {
+            if (!input.value || input.value.trim() === '') {
+                isValid = false;
+            }
+        });
+
+        if (!isValid) {
+            e.preventDefault();
+            alert('Mohon lengkapi semua nilai kriteria terlebih dahulu sebelum menyimpan!');
+            return;
+        }
+
         const submitButtons = form.querySelectorAll('button[type="submit"]');
         submitButtons.forEach(btn => {
             btn.disabled = true;
             btn.innerHTML = `<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Memproses...`;
         });
     });
-
     // Reset modal on close
     document.getElementById('modalTambahPenilaian').addEventListener('hidden.bs.modal', function () {
         modalTitle.innerHTML = `<i class="fa-solid fa-pen-to-square me-2"></i> Input Penilaian Mahasiswa`;

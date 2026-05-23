@@ -54,8 +54,8 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-header-box">
-                <i class="fa-solid fa-house"></i>
-                <span>Dashboard</span>
+                <i class="fa-solid fa-laptop"></i>
+                <span>Admin</span>
             </div>
 
             <ul class="menu">
