@@ -391,7 +391,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (berkasData.length > 0) {
                 berkasData.forEach(b => {
                     const item = document.createElement('a');
-                    item.href = `/storage/${b.file_path}`;
+                    item.href = `{{ asset('storage') }}/${b.file_path}`;
                     item.target = '_blank';
                     item.className = 'list-group-item list-group-item-action d-flex justify-content-between align-items-center py-2 px-3 bg-white border shadow-sm';
                     item.innerHTML = `

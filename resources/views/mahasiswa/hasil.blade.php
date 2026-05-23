@@ -131,7 +131,7 @@
         </thead>
         <tbody id="hasilTableBody">
             @forelse($hasilSeleksi as $index => $item)
-            <tr style="{{ (Auth::id() == $item->mahasiswa->user_id) ? 'background-color: #e3f2fd; font-weight: bold;' : '' }}">
+            <tr>
                 <td>{{ $index + 1 }}</td>
                 <td>{{ $item->mahasiswa->nama }}</td>
                 <td>{{ $item->mahasiswa->npm }}</td>
