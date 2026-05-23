@@ -40,10 +40,6 @@
             </div>
         </div>
         <div class="topbar-right">
-            <div class="notification">
-                <i class="fa-regular fa-bell"></i>
-                <span class="badge">3</span>
-            </div>
             <div class="user-profile">
                 <div class="d-flex flex-column align-items-end me-2">
                     <span class="user-name fw-bold">{{ auth()->user()->name }}</span>
@@ -70,14 +66,15 @@
                 <li class="{{ request()->is('admin/upload-berkas*') ? 'active' : '' }}"><a href="{{ route('admin.upload-berkas.index') }}"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Berkas</a></li>
                 <li class="{{ request()->is('admin/hasil-seleksi*') ? 'active' : '' }}"><a href="{{ route('admin.hasil-seleksi.index') }}"><i class="fa-solid fa-trophy"></i> Hasil Seleksi</a></li>
                 <li class="{{ request()->is('admin/manajemen-user*') ? 'active' : '' }}"><a href="{{ route('admin.manajemen-user.index') }}"><i class="fa-solid fa-users"></i> Manajemen User</a></li>
+                <li>
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="fa-solid fa-power-off"></i> Logout
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>   
             </ul>
-
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button type="submit" class="logout" style="width: 100%; border: none; background: none; text-align: left; padding: 0;">
-                    <i class="fa-solid fa-power-off"></i> Logout
-                </button>
-            </form>
         </aside>
 
         <!-- Main -->
