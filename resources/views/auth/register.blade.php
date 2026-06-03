@@ -3,10 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Daftar</title>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="https://sismapres-production.up.railway.app/css/cssregister.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://sismapres-production.up.railway.app/assets/img/LOGO%20UNP%20Kediri.png">
+    <link rel="icon"
+          type="image/png"
+          href="https://sismapres-production.up.railway.app/assets/img/LOGO%20UNP%20Kediri.png">
 </head>
 <body>
 
@@ -56,11 +64,12 @@
     <!-- KANAN -->
     <div class="right">
         <div class="form-box">
-            <form method="POST" action="{{ url('/register') }}">
+            <form method="POST"
+                  action="https://sismapres-production.up.railway.app/register">
                 @csrf
 
                 <div style="text-align: center; margin-bottom: 20px;">
-                    <img src="{{ asset('assets/img/LOGO UNP Kediri.png') }}" alt="Logo UNP" style="height: 60px; margin-bottom: 10px;">
+                    <img src="https://sismapres-production.up.railway.app/assets/img/LOGO%20UNP%20Kediri.png" alt="Logo UNP" style="height: 60px; margin-bottom: 10px;">
                     <h2 style="margin: 0; color: #355872; font-size: 24px;">SISMAPRES</h2>
                 </div>
 
