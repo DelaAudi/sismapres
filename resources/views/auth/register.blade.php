@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Daftar</title>
+    <title><title>TEST RAILWAY 12345</title></title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://sismapres-production.up.railway.app/css/cssregister.css">
